@@ -452,7 +452,7 @@
         .submit-btn:disabled { background: #999; cursor: not-allowed; }
         
         .form-message {
-            margin-top: 15px;
+            margin-bottom: 15px;
             padding: 12px;
             border-radius: 4px;
             text-align: center;
@@ -652,6 +652,7 @@
                         </p>
                         
                         <div class="rsvp-form">
+                            <div id="formMessage" class="form-message"></div>
                             <form id="rsvpForm" action="https://formspree.io/f/mpqdbryn" method="POST">
                                 <input type="hidden" name="evento" value="Matrimonio - 21 Giugno">
                                 
@@ -690,7 +691,6 @@
                                 </div>
                                 
                                 <button type="submit" class="submit-btn">Invia Conferma</button>
-                                <div id="formMessage" class="form-message"></div>
                             </form>
                         </div>
                     </div>
@@ -848,6 +848,12 @@
         
         function hideSection(id) {
             document.getElementById(id).classList.remove('active');
+            // Reset messaggio conferma
+            const msg = document.getElementById('formMessage');
+            if (msg) {
+                msg.style.display = 'none';
+                msg.className = 'form-message';
+            }
         }
         
         // Form handling
@@ -860,7 +866,6 @@
             btn.disabled = true;
             btn.textContent = 'Invio in corso...';
             msg.className = 'form-message';
-            msg.style.display = 'none';
             
             try {
                 const response = await fetch(form.action, {
@@ -872,6 +877,7 @@
                 if (response.ok) {
                     msg.textContent = '✓ Grazie! La vostra conferma è stata inviata con successo.';
                     msg.className = 'form-message success';
+                    msg.style.display = 'block';
                     form.reset();
                 } else {
                     throw new Error('Errore invio');
@@ -879,6 +885,7 @@
             } catch (error) {
                 msg.textContent = 'Si è verificato un errore. Riprova o contattaci direttamente.';
                 msg.className = 'form-message error';
+                msg.style.display = 'block';
             }
             
             btn.disabled = false;

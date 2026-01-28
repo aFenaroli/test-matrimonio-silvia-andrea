@@ -43,7 +43,6 @@
             max-width: 420px;
             height: calc(100vh - 10px);
             height: calc(100dvh - 10px);
-            /* Doppio sfondo: montagne in basso + pattern generale */
             background-image: url('montagne.png'), url('sfondo-montagne.png');
             background-position: bottom center, center;
             background-size: 100% auto, cover;
@@ -52,6 +51,7 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
         
         /* Content */
@@ -115,13 +115,6 @@
             line-height: 1.1;
         }
         
-        .info-item .label {
-            font-size: 0.55rem;
-            letter-spacing: 1px;
-            color: #666;
-            margin-top: 2px;
-        }
-        
         .info-item .venue {
             font-family: 'Playfair Display', serif;
             font-size: clamp(0.75rem, 2.8vw, 0.9rem);
@@ -169,7 +162,8 @@
             padding: 0 10px;
         }
         
-        .buttons-grid .location-link {
+        .buttons-grid .location-link,
+        .buttons-grid2 .location-link {
             padding: 10px 8px;
             font-size: 0.5rem;
         }
@@ -184,6 +178,9 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             transition: all 0.3s ease;
+            cursor: pointer;
+            background: transparent;
+            font-family: 'Montserrat', sans-serif;
         }
         
         .location-link:hover {
@@ -227,17 +224,346 @@
             flex-shrink: 0;
         }
         
+        /* ============ OVERLAY SECTIONS ============ */
+        .overlay-section {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(245, 243, 239, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: none;
+            flex-direction: column;
+            z-index: 100;
+        }
+        
+        .overlay-section.active {
+            display: flex;
+        }
+        
+        .overlay-scroll {
+            flex: 1;
+            overflow-y: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            padding-bottom: 20px;
+        }
+        
+        .overlay-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .overlay-header {
+            padding: 15px 15px 10px;
+            text-align: center;
+            border-bottom: 1px solid rgba(200,200,200,0.5);
+            background: rgba(255,255,255,0.9);
+            position: relative;
+        }
+        
+        .back-btn-top {
+            position: absolute;
+            top: 12px;
+            left: 10px;
+        }
+        
+        .back-btn-top button {
+            color: #666;
+            padding: 5px 10px;
+            text-decoration: none;
+            border: 1px solid #aaa;
+            font-size: 0.45rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: rgba(255,255,255,0.5);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .back-btn-top button:hover {
+            background: #333;
+            color: white;
+            border-color: #333;
+        }
+        
+        .names-small {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+        
+        .names-small .ampersand {
+            font-style: italic;
+            font-weight: 400;
+            color: #333;
+            display: inline;
+            font-size: 1em;
+        }
+        
+        .date-small {
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .overlay-content {
+            padding: 15px 20px;
+            flex: 1;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            background: rgba(255,255,255,0.95);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+        
+        .section-divider {
+            width: 50px;
+            height: 1px;
+            background: #999;
+            margin: 0 auto 15px;
+        }
+        
+        .section-text {
+            font-size: 0.8rem;
+            color: #444;
+            line-height: 1.6;
+            text-align: center;
+        }
+        
+        /* Info Box */
+        .info-box {
+            background: transparent;
+            padding: 0;
+        }
+        
+        .info-box-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        
+        .info-box-item:last-child { margin-bottom: 0; }
+        
+        .info-icon {
+            font-size: 1rem;
+            margin-right: 10px;
+            min-width: 24px;
+            text-align: center;
+        }
+        
+        .info-content h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.85rem;
+            color: #1a1a1a;
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+        
+        .info-content p {
+            font-size: 0.75rem;
+            color: #555;
+            line-height: 1.4;
+        }
+        
+        /* RSVP Form */
+        .rsvp-form {
+            background: transparent;
+            padding: 0;
+        }
+        
+        .form-group { margin-bottom: 12px; }
+        
+        .form-label {
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            background: #fff;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus { outline: none; border-color: #666; }
+        .form-input::placeholder { color: #aaa; }
+        textarea.form-input { resize: vertical; min-height: 80px; }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 8px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+        
+        .radio-option input { accent-color: #333; }
+        .radio-option span { font-size: 0.8rem; color: #444; }
+        
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            background: #333;
+            color: white;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 15px;
+        }
+        
+        .submit-btn:hover { background: #555; }
+        .submit-btn:disabled { background: #999; cursor: not-allowed; }
+        
+        .form-message {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 0.8rem;
+            display: none;
+        }
+        
+        .form-message.success {
+            display: block;
+            background: rgba(122, 154, 111, 0.2);
+            border: 1px solid #7a9a6f;
+            color: #4a6a3f;
+        }
+        
+        .form-message.error {
+            display: block;
+            background: rgba(200, 100, 100, 0.2);
+            border: 1px solid #c86464;
+            color: #a04040;
+        }
+        
+        /* Gift Box */
+        .gift-info {
+            background: transparent;
+            padding: 0;
+            text-align: center;
+        }
+        
+        .gift-text {
+            font-size: 0.85rem;
+            color: #444;
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .iban-container {
+            background: #f0efed;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+        
+        .iban-label {
+            font-size: 0.55rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        
+        .iban-code {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            color: #1a1a1a;
+            letter-spacing: 1px;
+            font-weight: 500;
+            word-break: break-all;
+        }
+        
+        .iban-name {
+            font-size: 0.75rem;
+            color: #555;
+            margin-top: 10px;
+        }
+        
+        /* Contacts */
+        .contacts-box {
+            background: transparent;
+            padding: 0;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .contact-item:last-child { border-bottom: none; }
+        
+        .contact-icon {
+            font-size: 1.2rem;
+            margin-right: 12px;
+        }
+        
+        .contact-info { text-align: left; }
+        
+        .contact-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            color: #1a1a1a;
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+        
+        .contact-number { font-size: 0.8rem; color: #555; }
+        .contact-number a { color: #555; text-decoration: none; }
+        .contact-number a:hover { color: #333; text-decoration: underline; }
+        
         @media (max-width: 350px) {
-            .info-item {
-                padding: 0 7px;
-            }
+            .info-item { padding: 0 7px; }
+            .radio-group { flex-direction: column; gap: 10px; align-items: center; }
         }
     </style>
 </head>
 <body>
     <div class="card">
-        <!-- Content -->
-        <div class="content">
+        <!-- MAIN CONTENT (Invito) -->
+        <div class="content" id="mainContent">
             <div>
                 <div class="names">
                     SILVIA
@@ -247,7 +573,6 @@
                 <div class="ci-sposiamo">Vi invitano al loro matrimonio</div>
             </div>
             
-            <!-- Date, Time and Location row -->
             <div class="info-row">
                 <div class="info-item">
                     <div class="number">21 giugno</div> 
@@ -266,7 +591,6 @@
                 </div>
             </div>
             
-            <!-- Info section -->
             <div class="info-section">
                 <div class="info-text">
                     La cerimonia si svolgerà presso l'Agriturismo Larice,<br>
@@ -275,27 +599,26 @@
             </div>
             
             <div class="link-container buttons-grid2">
-                <a href="conferma.html" class="location-link">
+                <button class="location-link" onclick="showSection('conferma')">
                     Conferma Presenza
-                </a>
-                <a href="informazioni.html" class="location-link">
+                </button>
+                <button class="location-link" onclick="showSection('informazioni')">
                     Informazioni Utili
-                </a>
+                </button>
             </div>
 			            
             <div class="link-container buttons-grid">    
                 <a href="https://agriturismolarice.com/" class="location-link" target="_blank">
                     Location
                 </a>            
-				<a href="lista-nozze.html" class="location-link">
+                <button class="location-link" onclick="showSection('listanozze')">
                     Lista Nozze
-                </a>
-                <a href="contatti.html" class="location-link">
+                </button>
+                <button class="location-link" onclick="showSection('contatti')">
                     Contatti
-                </a>
+                </button>
             </div>
             
-            <!-- Footer -->
             <div class="footer">
                 <div class="footer-text">
                     Non vediamo l'ora di abbracciarvi<br>
@@ -306,8 +629,261 @@
             </div>
         </div>
         
-        <!-- Spacer per le montagne di sfondo -->
         <div class="mountain-spacer"></div>
+        
+        <!-- ============ OVERLAY: CONFERMA ============ -->
+        <div class="overlay-section" id="conferma">
+            <div class="overlay-scroll">
+                <div class="overlay-header">
+                    <div class="back-btn-top">
+                        <button onclick="hideSection('conferma')">← Indietro</button>
+                    </div>
+                    <div class="names-small">Silvia <span class="ampersand">&</span> Andrea</div>
+                    <div class="date-small">21 Giugno 2026 • Clusone</div>
+                </div>
+                
+                <div class="overlay-content">
+                    <div class="section">
+                        <h2 class="section-title">Conferma Partecipazione</h2>
+                        <div class="section-divider"></div>
+                        <p class="section-text" style="margin-bottom: 15px;">
+                            Vi chiediamo gentilmente di confermare la vostra presenza<br>
+                            entro il <strong>15 maggio 2026</strong>
+                        </p>
+                        
+                        <div class="rsvp-form">
+                            <form id="rsvpForm" action="https://formspree.io/f/mpqdbryn" method="POST">
+                                <input type="hidden" name="evento" value="Matrimonio - 21 Giugno">
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Nome e Cognome</label>
+                                    <input type="text" name="nome" class="form-input" placeholder="Il vostro nome" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Numero di partecipanti</label>
+                                    <input type="number" name="partecipanti" class="form-input" placeholder="1" min="1" max="10" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Parteciperete?</label>
+                                    <div class="radio-group">
+                                        <label class="radio-option">
+                                            <input type="radio" name="conferma" value="si" required>
+                                            <span>Sì, con gioia!</span>
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="conferma" value="no">
+                                            <span>Purtroppo no</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Intolleranze o allergie alimentari</label>
+                                    <textarea name="intolleranze" class="form-input" placeholder="Segnalate eventuali intolleranze o allergie..."></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Note o messaggi per gli sposi</label>
+                                    <textarea name="messaggio" class="form-input" placeholder="Un pensiero per noi..."></textarea>
+                                </div>
+                                
+                                <button type="submit" class="submit-btn">Invia Conferma</button>
+                                <div id="formMessage" class="form-message"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- ============ OVERLAY: INFORMAZIONI ============ -->
+        <div class="overlay-section" id="informazioni">
+            <div class="overlay-scroll">
+                <div class="overlay-header">
+                    <div class="back-btn-top">
+                        <button onclick="hideSection('informazioni')">← Indietro</button>
+                    </div>
+                    <div class="names-small">Silvia <span class="ampersand">&</span> Andrea</div>
+                    <div class="date-small">21 Giugno 2026 • Clusone</div>
+                </div>
+                
+                <div class="overlay-content">
+                    <div class="section">
+                        <h2 class="section-title">Informazioni Utili</h2>
+                        <div class="section-divider"></div>
+                        
+                        <div class="info-box">
+                            <div class="info-box-item">
+                                <span class="info-icon">📍</span>
+                                <div class="info-content">
+                                    <h4>Come Arrivare</h4>
+                                    <p>L'Agriturismo Larice si trova in Via Valeda 15, Clusone (BG). Seguire le indicazioni per "Strada per San Lucio".</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-box-item">
+                                <span class="info-icon">🚗</span>
+                                <div class="info-content">
+                                    <h4>Parcheggio</h4>
+                                    <p>Ampio parcheggio gratuito disponibile presso la struttura.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-box-item">
+                                <span class="info-icon">👗</span>
+                                <div class="info-content">
+                                    <h4>Dress Code</h4>
+                                    <p>Elegante informale. Il matrimonio si svolgerà all'aperto, consigliamo scarpe comode per il prato.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-box-item">
+                                <span class="info-icon">🏨</span>
+                                <div class="info-content">
+                                    <h4>Pernottamento</h4>
+                                    <p>Per chi viene da lontano, Clusone offre diverse strutture ricettive. Contattateci per suggerimenti!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- ============ OVERLAY: LISTA NOZZE ============ -->
+        <div class="overlay-section" id="listanozze">
+            <div class="overlay-scroll">
+                <div class="overlay-header">
+                    <div class="back-btn-top">
+                        <button onclick="hideSection('listanozze')">← Indietro</button>
+                    </div>
+                    <div class="names-small">Silvia <span class="ampersand">&</span> Andrea</div>
+                    <div class="date-small">21 Giugno 2026 • Clusone</div>
+                </div>
+                
+                <div class="overlay-content">
+                    <div class="section">
+                        <h2 class="section-title">Lista Nozze</h2>
+                        <div class="section-divider"></div>
+                        
+                        <div class="gift-info">
+                            <p class="gift-text">
+                                La vostra presenza è il regalo più grande.<br><br>
+                                Se desiderate contribuire al nostro viaggio di nozze,<br>
+                                potete farlo tramite bonifico bancario.
+                            </p>
+                            
+                            <div class="iban-container">
+                                <div class="iban-label">IBAN</div>
+                                <div class="iban-code">IT00 A000 0000 0000 0000 0000 000</div>
+                                <div class="iban-name">Intestato a: Silvia Cognome / Andrea Cognome</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- ============ OVERLAY: CONTATTI ============ -->
+        <div class="overlay-section" id="contatti">
+            <div class="overlay-scroll">
+                <div class="overlay-header">
+                    <div class="back-btn-top">
+                        <button onclick="hideSection('contatti')">← Indietro</button>
+                    </div>
+                    <div class="names-small">Silvia <span class="ampersand">&</span> Andrea</div>
+                    <div class="date-small">21 Giugno 2026 • Clusone</div>
+                </div>
+                
+                <div class="overlay-content">
+                    <div class="section">
+                        <h2 class="section-title">Contatti</h2>
+                        <div class="section-divider"></div>
+                        <p class="section-text" style="margin-bottom: 20px;">
+                            Per qualsiasi informazione,<br>
+                            non esitate a contattarci!
+                        </p>
+                        
+                        <div class="contacts-box">
+                            <div class="contact-item">
+                                <span class="contact-icon">👰</span>
+                                <div class="contact-info">
+                                    <div class="contact-name">Silvia</div>
+                                    <div class="contact-number">
+                                        <a href="tel:+39000000000">+39 000 000 0000</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <span class="contact-icon">🤵</span>
+                                <div class="contact-info">
+                                    <div class="contact-name">Andrea</div>
+                                    <div class="contact-number">
+                                        <a href="tel:+39000000000">+39 000 000 0000</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
     </div>
+    
+    <script>
+        function showSection(id) {
+            const section = document.getElementById(id);
+            section.classList.add('active');
+            const scrollArea = section.querySelector('.overlay-scroll');
+            if (scrollArea) scrollArea.scrollTop = 0;
+        }
+        
+        function hideSection(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+        
+        // Form handling
+        document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const btn = form.querySelector('.submit-btn');
+            const msg = document.getElementById('formMessage');
+            
+            btn.disabled = true;
+            btn.textContent = 'Invio in corso...';
+            msg.className = 'form-message';
+            msg.style.display = 'none';
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                
+                if (response.ok) {
+                    msg.textContent = '✓ Grazie! La vostra conferma è stata inviata con successo.';
+                    msg.className = 'form-message success';
+                    form.reset();
+                } else {
+                    throw new Error('Errore invio');
+                }
+            } catch (error) {
+                msg.textContent = 'Si è verificato un errore. Riprova o contattaci direttamente.';
+                msg.className = 'form-message error';
+            }
+            
+            btn.disabled = false;
+            btn.textContent = 'Invia Conferma';
+        });
+    </script>
 </body>
 </html>

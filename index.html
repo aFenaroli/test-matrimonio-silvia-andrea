@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Silvia & Andrea - Ci Sposiamo! - 21 Giugno 2026</title>
+	
+    <meta name="description" content="21 giugno 2026 • Agriturismo Larice, Clusone (BG) • Ci sposiamo lì, festeggiamo lì!">
+    <meta property="og:title" content="💕 Silvia & Andrea - Ci Sposiamo! 💕">
+    <meta property="og:description" content="21 giugno 2026 • Agriturismo Larice, Clusone (BG) • Ci sposiamo lì, festeggiamo lì!">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="it_IT">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f5f3ef;
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+        }
+        
+        .card {
+            width: 100%;
+            max-width: 420px;
+            height: calc(100vh - 10px);
+            height: calc(100dvh - 10px);
+            /* Doppio sfondo: montagne in basso + pattern generale */
+            background-image: url('montagne.png'), url('sfondo-montagne.png');
+            background-position: bottom center, center;
+            background-size: 100% auto, cover;
+            background-repeat: no-repeat, no-repeat;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.12);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Content */
+        .content {
+            padding: 12px 15px 0;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+        
+        .names {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 7vw, 2.5rem);
+            color: #1a1a1a;
+            line-height: 1.1;
+            font-weight: 500;
+        }
+        
+        .ampersand {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+            display: block;
+            font-size: 0.55em;
+            color: #333;
+            margin: 2px 0;
+        }
+        
+        .ci-sposiamo {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #444;
+            margin-top: 5px;
+            font-weight: 400;
+        }
+        
+        /* Date, Time, Location row */
+        .info-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .info-item {
+            text-align: center;
+            padding: 0 10px;
+        }
+        
+        .info-item:not(:last-child) {
+            border-right: 1px solid #ccc;
+        }
+        
+        .info-item .number {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.1rem, 4.5vw, 1.8rem);
+            font-weight: 500;
+            color: #1a1a1a;
+            line-height: 1.1;
+        }
+        
+        .info-item .label {
+            font-size: 0.55rem;
+            letter-spacing: 1px;
+            color: #666;
+            margin-top: 2px;
+        }
+        
+        .info-item .venue {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(0.75rem, 2.8vw, 0.9rem);
+            color: #1a1a1a;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+        
+        .info-item .address {
+            font-size: 0.55rem;
+            color: #555;
+            line-height: 1.2;
+            margin-top: 2px;
+        }
+        
+        /* Info section */
+        .info-section {
+            padding: 8px 0;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .info-text {
+            font-size: 0.75rem;
+            color: #444;
+            line-height: 1.5;
+            font-style: italic;
+        }
+        
+        .link-container {
+            margin: 0;
+        }
+        
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            padding: 0 10px;
+        }
+		
+        .buttons-grid2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding: 0 10px;
+        }
+        
+        .buttons-grid .location-link {
+            padding: 10px 8px;
+            font-size: 0.5rem;
+        }
+        
+        .location-link {
+            display: inline-block;
+            color: #333;
+            padding: 8px 20px;
+            text-decoration: none;
+            border: 1px solid #999;
+            font-size: 0.55rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .location-link:hover {
+            background: #333;
+            color: white;
+            border-color: #333;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding-bottom: 0;
+        }
+        
+        .footer-text {
+            font-size: 0.75rem;
+            line-height: 1.5;
+            color: #555;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+        
+        .signature {
+            font-size: 0.55rem;
+            letter-spacing: 2px;
+            color: #888;
+            text-transform: uppercase;
+        }
+        
+        .signature-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.4rem;
+            color: #1a1a1a;
+            margin-top: 8px;
+            margin-bottom: 0;
+        }
+        
+        /* Spazio per le montagne in basso */
+        .mountain-spacer {
+            height: 38vh;
+            flex-shrink: 0;
+        }
+        
+        @media (max-width: 350px) {
+            .info-item {
+                padding: 0 7px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- Content -->
+        <div class="content">
+            <div>
+                <div class="names">
+                    SILVIA
+                    <span class="ampersand">&</span>
+                    ANDREA
+                </div>
+                <div class="ci-sposiamo">Vi invitano al loro matrimonio</div>
+            </div>
+            
+            <!-- Date, Time and Location row -->
+            <div class="info-row">
+                <div class="info-item">
+                    <div class="number">21 giugno</div> 
+                    <div class="address">2026</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="number">11:00</div>
+                    <div class="address">del mattino</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="venue">Agriturismo <br> Larice</div>
+                    <div class="address">Strada per San Lucio</div>
+                    <div class="address">Via Valeda 15, Clusone (BG)</div>
+                </div>
+            </div>
+            
+            <!-- Info section -->
+            <div class="info-section">
+                <div class="info-text">
+                    La cerimonia si svolgerà presso l'Agriturismo Larice,<br>
+                    dove seguiranno pranzo e festeggiamenti.
+                </div>
+            </div>
+            
+            <div class="link-container buttons-grid2">
+                <a href="conferma.html" class="location-link">
+                    Conferma Presenza
+                </a>
+                <a href="informazioni.html" class="location-link">
+                    Informazioni Utili
+                </a>
+            </div>
+			            
+            <div class="link-container buttons-grid">    
+                <a href="https://agriturismolarice.com/" class="location-link" target="_blank">
+                    Location
+                </a>            
+				<a href="lista-nozze.html" class="location-link">
+                    Lista Nozze
+                </a>
+                <a href="contatti.html" class="location-link">
+                    Contatti
+                </a>
+            </div>
+            
+            <!-- Footer -->
+            <div class="footer">
+                <div class="footer-text">
+                    Non vediamo l'ora di abbracciarvi<br>
+                    e di festeggiare insieme a voi questo giorno!
+                </div>
+                <div class="signature">Con affetto,</div>
+                <div class="signature-names">Silvia & Andrea</div>
+            </div>
+        </div>
+        
+        <!-- Spacer per le montagne di sfondo -->
+        <div class="mountain-spacer"></div>
+    </div>
+</body>
+</html>

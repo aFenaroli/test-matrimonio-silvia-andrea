@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Silvia & Andrea - Lista Nozze</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { height: 100%; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f5f3ef;
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 5px;
+        }
+        .card {
+            width: 100%;
+            max-width: 420px;
+            min-height: calc(100vh - 10px);
+            background-image: url('montagne.png'), url('sfondo-montagne.png');
+            background-position: bottom center, center;
+            background-size: 100% auto, cover;
+            background-repeat: no-repeat;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.12);
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding: 20px 15px 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        .names-small {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+        .names-small .ampersand {
+            font-style: italic;
+            font-weight: 400;
+            color: #333;
+        }
+        .date-small {
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #666;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 15px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+        .section-divider {
+            width: 50px;
+            height: 1px;
+            background: #999;
+            margin: 0 auto 15px;
+        }
+        .gift-info {
+            background: rgba(255,255,255,0.7);
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .gift-text {
+            font-size: 0.85rem;
+            color: #444;
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        .iban-container {
+            background: #f8f7f5;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        .iban-label {
+            font-size: 0.55rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        .iban-code {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            color: #1a1a1a;
+            letter-spacing: 1px;
+            font-weight: 500;
+            word-break: break-all;
+        }
+        .iban-name {
+            font-size: 0.75rem;
+            color: #555;
+            margin-top: 10px;
+        }
+        .nav-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+        }
+        .nav-link a {
+            color: #333;
+            padding: 8px 20px;
+            text-decoration: none;
+            border: 1px solid #999;
+            font-size: 0.55rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .nav-link a:hover {
+            background: #333;
+            color: white;
+            border-color: #333;
+        }
+        .mountain-spacer {
+            height: 40vh;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="names-small">Silvia <span class="ampersand">&</span> Andrea</div>
+            <div class="date-small">21 Giugno 2026 • Clusone</div>
+        </div>
+        
+        <div class="content">
+            
+            <div class="section">
+                <h2 class="section-title">Lista Nozze</h2>
+                <div class="section-divider"></div>
+                
+                <div class="gift-info">
+                    <p class="gift-text">
+                        La vostra presenza è il regalo più grande.<br><br>
+                        Se desiderate contribuire al nostro viaggio di nozze,<br>
+                        potete farlo tramite bonifico bancario.
+                    </p>
+                    
+                    <div class="iban-container">
+                        <div class="iban-label">IBAN</div>
+                        <div class="iban-code">IT00 A000 0000 0000 0000 0000 000</div>
+                        <div class="iban-name">Intestato a: Silvia Cognome / Andrea Cognome</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-link">
+                <a href="index.html">← Torna all'invito</a>
+            </div>
+            
+        </div>
+        
+        <div class="mountain-spacer"></div>
+    </div>
+</body>
+</html>

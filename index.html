@@ -43,10 +43,13 @@
             max-width: 420px;
             height: calc(100vh - 10px);
             height: calc(100dvh - 10px);
-            background-image: url('montagne_sole1.png'), url('sfondo-montagne.png');
-            background-position: bottom center, center;
-            background-size: 100% auto, cover;
+            background-image: 
+                linear-gradient(to bottom, #f5f3ef 50%, rgba(245,243,239,0) 90%),
+                url('montagne2.png');
+            background-position: top, bottom center;
+            background-size: 100% 100%, 100% auto;
             background-repeat: no-repeat, no-repeat;
+            background-color: #f5f3ef;
             box-shadow: 0 4px 30px rgba(0,0,0,0.12);
             overflow: hidden;
             display: flex;
@@ -96,6 +99,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: 12px;
         }
         
         .info-item {
@@ -135,6 +139,7 @@
             padding: 8px 0;
             border-top: 1px solid #ddd;
             border-bottom: 1px solid #ddd;
+            margin-top: 12px;
         }
         
         .info-text {
@@ -153,6 +158,7 @@
             grid-template-columns: 1fr 1fr 1fr;
             gap: 8px;
             padding: 0 10px;
+            margin-top: 12px;
         }
 		
         .buttons-grid2 {
@@ -160,6 +166,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 8px;
             padding: 0 10px;
+            margin-top: 12px;
         }
         
         .buttons-grid .location-link,
@@ -193,6 +200,7 @@
         .footer {
             text-align: center;
             padding-bottom: 0;
+            margin-top: 12px;
         }
         
         .footer-text {
@@ -220,7 +228,7 @@
         
         /* Spazio per le montagne in basso */
         .mountain-spacer {
-            height: 20vh;
+            height: 45vh;
             flex-shrink: 0;
         }
         
@@ -558,9 +566,56 @@
             .info-item { padding: 0 7px; }
             .radio-group { flex-direction: column; gap: 10px; align-items: center; }
         }
+        
+        /* =============================================
+           OVERLAY "GIRA IL TELEFONO" – solo mobile landscape
+           ============================================= */
+        .rotate-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #f5f3ef;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .rotate-overlay .rotate-icon {
+            font-size: 3rem;
+            animation: wiggle 1.5s ease-in-out infinite;
+        }
+        
+        .rotate-overlay p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-15deg); }
+            75% { transform: rotate(15deg); }
+        }
+        
+        @media (orientation: landscape) and (max-height: 500px) {
+            .rotate-overlay {
+                display: flex;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Overlay per landscape su mobile -->
+    <div class="rotate-overlay">
+        <div class="rotate-icon">📱</div>
+        <p>Per favore, ruota il telefono<br>in verticale</p>
+    </div>
+
     <div class="card">
         <!-- MAIN CONTENT (Invito) -->
         <div class="content" id="mainContent">
@@ -580,8 +635,8 @@
                 </div>
                 
                 <div class="info-item">
-                    <div class="number">11:00</div>
-                    <div class="address">del mattino</div>
+                    <div class="number">12:00</div>
+                    <div class="address"><br></div>
                 </div>
                 
                 <div class="info-item">
@@ -623,8 +678,8 @@
                 <div class="footer-text">
                     Non vediamo l'ora di abbracciarvi e di festeggiare<br>
                     insieme a voi questo giorno!
-                </div>
-                <div class="signature">Con affetto,</div>
+                </div><!-- 
+                <div class="signature">Con affetto,</div> -->
                 <div class="signature-names">Silvia & Andrea</div>
             </div>
         </div>
@@ -815,7 +870,7 @@
                                 <div class="contact-info">
                                     <div class="contact-name">Silvia</div>
                                     <div class="contact-number">
-                                        <a href="tel:+39000000000">+39 000 000 0000</a>
+                                        <a href="tel:+39000000000">+39 349 617 8026</a>
                                     </div>
                                 </div>
                             </div>
@@ -825,7 +880,7 @@
                                 <div class="contact-info">
                                     <div class="contact-name">Andrea</div>
                                     <div class="contact-number">
-                                        <a href="tel:+39000000000">+39 000 000 0000</a>
+                                        <a href="tel:+39000000000">+39 340 291 5284</a>
                                     </div>
                                 </div>
                             </div>

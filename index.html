@@ -44,7 +44,7 @@
             height: calc(100vh - 10px);
             height: calc(100dvh - 10px);
             background-image: 
-                linear-gradient(to bottom, #f5f3ef 50%, rgba(245,243,239,0) 90%),
+                linear-gradient(to bottom, #f5f3ef 50%, rgba(245,243,239,0) 72%),
                 url('montagne2.png');
             background-position: top, bottom center;
             background-size: 100% 100%, 100% auto;
@@ -562,6 +562,54 @@
         .contact-number a { color: #555; text-decoration: none; }
         .contact-number a:hover { color: #333; text-decoration: underline; }
         
+        .maps-link {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 0.55rem;
+            color: #555;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid #aaa;
+            padding: 5px 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .maps-link:hover {
+            background: #333;
+            color: white;
+            border-color: #333;
+        }
+        
+        .info-box-link {
+            text-decoration: none;
+            display: flex;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .info-box-link:hover {
+            opacity: 0.7;
+        }
+        
+        .info-box-link h4 { color: #1a1a1a; }
+        .info-box-link p { color: #555; }
+        
+        .maps-arrow {
+            font-style: normal;
+            color: #888;
+            margin-left: 4px;
+        }
+        
+        .maps-hint {
+            display: block;
+            font-size: 0.5rem;
+            color: #888;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+        
         @media (max-width: 350px) {
             .info-item { padding: 0 7px; }
             .radio-group { flex-direction: column; gap: 10px; align-items: center; }
@@ -771,13 +819,14 @@
                         <div class="section-divider"></div>
                         
                         <div class="info-box">
-                            <div class="info-box-item">
+                            <a href="https://maps.app.goo.gl/dcWJ9ADxgdgcDQS57" target="_blank" class="info-box-item info-box-link">
                                 <span class="info-icon">📍</span>
                                 <div class="info-content">
                                     <h4>Come Arrivare</h4>
                                     <p>L'Agriturismo Larice si trova in Via Valeda 15, Clusone (BG). Seguire le indicazioni per "Strada per San Lucio".</p>
+                                    <span class="maps-hint">Tocca per aprire Google Maps</span>
                                 </div>
-                            </div>
+                            </a>
                             
                             <div class="info-box-item">
                                 <span class="info-icon">🚗</span>
@@ -870,7 +919,7 @@
                                 <div class="contact-info">
                                     <div class="contact-name">Silvia</div>
                                     <div class="contact-number">
-                                        <a href="tel:+39000000000">+39 349 617 8026</a>
+                                        <a href="tel:+39000000000">+39 000 000 0000</a>
                                     </div>
                                 </div>
                             </div>
@@ -880,7 +929,7 @@
                                 <div class="contact-info">
                                     <div class="contact-name">Andrea</div>
                                     <div class="contact-number">
-                                        <a href="tel:+39000000000">+39 340 291 5284</a>
+                                        <a href="tel:+39000000000">+39 000 000 0000</a>
                                     </div>
                                 </div>
                             </div>
